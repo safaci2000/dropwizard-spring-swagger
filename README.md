@@ -15,3 +15,7 @@ How to run it (command line)
 * `mvn clean package`
 * `java -jar target/dropwizard-swagger-sample-app-1.0-SNAPSHOT.jar server src/main/resources/sample-config.yaml`
 * Open your browser and hit http://localhost:9999/swagger
+
+#NOTE:
+
+based on https://github.com/federecio/dropwizard-swagger-sample-app.git  

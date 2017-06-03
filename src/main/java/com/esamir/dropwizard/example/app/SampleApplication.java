@@ -1,10 +1,13 @@
-package io.federecio.dropwizard.swagger.sample;
+package com.esamir.dropwizard.example.app;
 
+import com.esamir.dropwizard.example.app.resources.SampleResource;
+import com.esamir.dropwizard.support.spring.SpringContextBuilder;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.federecio.dropwizard.swagger.SwaggerBundle;
 import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
+import org.springframework.context.ApplicationContext;
 
 /**
  * @author Federico Recio
@@ -24,11 +27,16 @@ public class SampleApplication extends Application<SampleConfiguration> {
                 return sampleConfiguration.swaggerBundleConfiguration;
             }
         });
+
     }
 
     @Override
     public void run(SampleConfiguration configuration, Environment environment) throws Exception {
-        // add your resources as usual
-        environment.jersey().register(new SampleResource());
+        ApplicationContext context = new SpringContextBuilder()
+            .addAnnotationConfiguration(SpringConfiguration.class)
+            .build();
+
+        SampleResource sampleResource = context.getBean(SampleResource.class);
+        environment.jersey().register(sampleResource);
     }
 }

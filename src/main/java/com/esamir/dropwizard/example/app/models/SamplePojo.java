@@ -1,4 +1,4 @@
-package io.federecio.dropwizard.swagger.sample;
+package com.esamir.dropwizard.example.app.models;
 
 /**
  * @author Federico Recio
